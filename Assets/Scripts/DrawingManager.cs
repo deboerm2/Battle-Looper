@@ -27,6 +27,7 @@ public class DrawingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* KnM controls
         if(Input.GetKeyDown(KeyCode.Mouse0) && loadedBrushes.Count != 0)
         {
             StartBrush();
@@ -36,12 +37,31 @@ public class DrawingManager : MonoBehaviour
         {
             LoopBrush();
         }
+        */
+
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && loadedBrushes.Count != 0)
+        {
+            print("start brush");
+            StartBrush();
+        }
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && currentBrush != null)
+        {
+            print("Loop brush");
+            LoopBrush();
+        }
     }
     private void LateUpdate()
     {
+        /*
         if (Input.GetKey(KeyCode.Mouse0) && currentBrush != null)
         {
-            Drawing();
+            Drawing(Input.mousePosition);
+        }
+        */
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && currentBrush != null)
+        {
+            Drawing(Input.GetTouch(0).position);
+            print("touch Draw!");
         }
     }
 
@@ -51,17 +71,17 @@ public class DrawingManager : MonoBehaviour
         edgeCol = currentBrush.GetComponent<EdgeCollider2D>();
     }
 
-    void Drawing()
+    void Drawing(Vector3 inputPos)
     {
         List<Vector2> edges = new List<Vector2>();
 
         //if mouse position changed, make a new point
-        if (currentBrush.positionCount ==0 || mainCam.ScreenToWorldPoint(Input.mousePosition) != currentBrush.GetPosition(currentBrush.positionCount - 1))
+        if (currentBrush.positionCount ==0 || mainCam.ScreenToWorldPoint(inputPos) != currentBrush.GetPosition(currentBrush.positionCount - 1))
         { 
             currentBrush.positionCount++;
             
             currentBrush.SetPosition(currentBrush.positionCount - 1,
-                currentBrush.gameObject.transform.InverseTransformPoint(mainCam.ScreenToWorldPoint(Input.mousePosition)));
+                currentBrush.gameObject.transform.InverseTransformPoint(mainCam.ScreenToWorldPoint(inputPos)));
 
             for(int i = 2; i < currentBrush.positionCount-1; i++)
             {
