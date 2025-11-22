@@ -27,7 +27,7 @@ public class DrawingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /* KnM controls
+        //KnM controls
         if(Input.GetKeyDown(KeyCode.Mouse0) && loadedBrushes.Count != 0)
         {
             StartBrush();
@@ -37,31 +37,30 @@ public class DrawingManager : MonoBehaviour
         {
             LoopBrush();
         }
-        */
-
+        
+        //initiate a brush
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && loadedBrushes.Count != 0)
         {
-            print("start brush");
             StartBrush();
         }
+        //connect the line ends to mak a loop
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && currentBrush != null)
         {
-            print("Loop brush");
             LoopBrush();
         }
     }
     private void LateUpdate()
     {
-        /*
+        //continuously add points to brush
+        
         if (Input.GetKey(KeyCode.Mouse0) && currentBrush != null)
         {
             Drawing(Input.mousePosition);
         }
-        */
+        
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && currentBrush != null)
         {
             Drawing(Input.GetTouch(0).position);
-            print("touch Draw!");
         }
     }
 

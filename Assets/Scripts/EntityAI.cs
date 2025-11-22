@@ -78,8 +78,11 @@ public class EntityAI : MonoBehaviour
     {
         if(attackTimer <= 0)
         {
+            entityStats.animator.SetBool("doAttack", true);
             Attack();
         }
+        else
+            entityStats.animator.SetBool("doAttack", false);
     }
 
     void Attack()

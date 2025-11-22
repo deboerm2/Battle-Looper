@@ -21,10 +21,11 @@ public class EntityStats : MonoBehaviour
     public MindEffects mindEffect;
     public BodyEffects bodyEffect;
     public EnvironmentEffects environmentEffect;
-    [Space]
+    [Header("References")]
     public SpriteRenderer mindIndicator;
     public SpriteRenderer bodyIndicator;
     public SpriteRenderer environmentIndicator;
+    public Animator animator;
 
     private float mindEffectTimer;
     private float bodyEffectTimer;

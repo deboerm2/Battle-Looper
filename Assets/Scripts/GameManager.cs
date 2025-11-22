@@ -23,12 +23,13 @@ public class GameManager : MonoBehaviour
     
     public GameObject[] brushPickupPrefabs;
     public Transform[] pickupSpawnAreas;
-    public int pickupSpawnCount;
+    [Tooltip("number of deaths needed for a pickup to spawn")]public int pickupSpawnCount;
 
     public GameObject loseScreen;
     public GameObject winScreen;
 
     private GameObject[] spawnedBrushes = new GameObject[8];
+    //total deaths between each pickup spawn
     private int pickupSpawnCountTotal;
     private bool isWinner = false;
     
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
         //pick brush to spawn
         int selectedBrush = Random.Range(0, brushPickupPrefabs.Length);
 
+        //instatiate brush pickup in first available open slot
         for (int i = 0; i < spawnedBrushes.Length; i++)
         {
             if(spawnedBrushes[i] == null)
