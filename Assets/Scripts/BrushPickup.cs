@@ -14,11 +14,11 @@ public class BrushPickup : MonoBehaviour
             GameManager.instance.RemovePickup(gameObject);
             Destroy(gameObject);
         }
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        /*if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             DrawingManager.instance.loadedBrushes.Enqueue(Instantiate(brushPrefab));
             GameManager.instance.RemovePickup(gameObject);
             Destroy(gameObject);
-        }
+        }*/
     }
 }

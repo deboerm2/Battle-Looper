@@ -38,6 +38,7 @@ public class DrawingManager : MonoBehaviour
             LoopBrush();
         }
         
+        /*
         //initiate a brush
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && loadedBrushes.Count != 0)
         {
@@ -48,6 +49,7 @@ public class DrawingManager : MonoBehaviour
         {
             LoopBrush();
         }
+        */
     }
     private void LateUpdate()
     {
@@ -57,11 +59,12 @@ public class DrawingManager : MonoBehaviour
         {
             Drawing(Input.mousePosition);
         }
-        
+        /*
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && currentBrush != null)
         {
             Drawing(Input.GetTouch(0).position);
         }
+        */
     }
 
     void StartBrush()
